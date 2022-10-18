@@ -41,12 +41,32 @@
                 return res;
             }
 
-            extraerPrimero(){
-                //
+            extraerPrimero(primero){
+                let current = this.primero;
+                let prev = null;
+                while (current) {
+                    if (current.numero === numero) {
+                        //elimina primero
+                        if (current === this.primero) this.primero = this.primero.next;
+                        //elimina ultimo
+                        else if (!current.next) prev.next = null;
+                        return true;
+                    }
+                    prev = current;
+                    current = current.next;
+                }
+                return false;
             }
 
             extraerUltimo(){
-                //
+                //muestra ultimo
+                let ultimoNodo = this.primero;
+                if (ultimoNodo) {
+                    while (ultimoNodo.next) {
+                        ultimoNodo = ultimoNodo.next
+                    }
+                }
+                return ultimoNodo;
             }
         }
 
@@ -61,9 +81,9 @@
         datos.agregar(num);
         num=new Nodo(8);
         datos.agregar(num);
-        let first=datos.extraerPrimero(); //elimianr el primero
+        let first=datos.extraerPrimero(); //eliminar el primero
         console.log(first.numero);
-        let last=datos.extraerUltimo(); //elimianr y devolver el ultimo
+        let last=datos.extraerUltimo(); //eliminar y devolver el ultimo
         console.log(last.numero);
         console.log(datos.listar());
     </script>
